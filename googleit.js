@@ -133,7 +133,7 @@ export async function getAnswer(question) {
         console.log(result)
         if(result.score <= SCORE_THRESH) {
             console.log('getting alternative ans')
-            result = await qaClient.predict(question, text)
+            result = await qaClient.predict(question, results[1].snippet)
             console.log(result)
             if(result.score <= SCORE_THRESH) { result = {text: results[0].snippet.substring(0,Math.min(100, results[0].snippet.length)) + '...'} }
         }
