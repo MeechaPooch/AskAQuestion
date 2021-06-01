@@ -71,7 +71,7 @@ const options = {
 
 async function googleSearch(search) {
     // return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286' });
-    return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286', 'limit': '2' });
+    return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286', 'limit': '3' });
 }
 
 async function googleAPI(search) {
@@ -119,6 +119,7 @@ export async function getAnswer(question) {
     // let text = await getBottomSitePreview(question)
 
     let results = await googleSearch(question)
+    console.log('results length: ' + results.length)
     if (results.length < 1) { return 'Answer could not be found.' }
     // console.log(results[0].link)
     let text = results[0].snippet
