@@ -132,7 +132,7 @@ export async function getAnswer(question) {
         // console.log(text)
         let result = await qaClient.predict(question, text)
         console.log(result)
-        ALTERNATIVE ANSWER
+        //ALTERNATIVE ANSWER
         if (result.score <= SCORE_THRESH) {
             if (results.length >= 2) {
                 console.log('getting alternative ans')
