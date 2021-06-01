@@ -121,7 +121,9 @@ export async function getAnswer(question) {
         // let text = await getTopSiteText(question)
         text = text.substring(0, Math.min(5000, text.length))
         // console.log(text)
-        ans = (await qaClient.predict(question, text)).text
+        let result = await qaClient.predict(question, text)
+        console.log(result)
+        ans = result.text
     }
 
     console.log(`Question: ${colors.fgBlack + colors.bgWhite}${question}${colors.reset} | Answer: ${colors.fgBlack + colors.bgWhite}${ans}${colors.reset}`)
