@@ -33,6 +33,8 @@ import { isNull } from 'util';
 // Proxy list: https://www.freeproxylists.net/
 
 //////////////////////// CONFIG ///////////////////////
+let SCORE_THRESH = 0.32
+
 let VAR_LEN = 256
 let MAX_LEN = 256 * 2
 
@@ -114,7 +116,13 @@ async function getBottomSitePreview(search) {
 export async function getAnswer(question) {
     let ans = null
     // let text = await getAPISnippet(question)
-    let text = await getBottomSitePreview(question)
+    // let text = await getBottomSitePreview(question)
+
+    let results = await googleSearch(search)
+    if (results.length < 1) { return 'Answer could not be found.' }
+    // console.log(results[0].link)
+    let text = results[0].snippet
+
     if (text == null) {
         ans = "Answer could not be found."
     } else {
@@ -123,6 +131,12 @@ export async function getAnswer(question) {
         // console.log(text)
         let result = await qaClient.predict(question, text)
         console.log(result)
+        if(result.score <= SCORE_THRESH) {
+            console.log('getting alternative ans')
+            result = await qaClient.predict(question, text)
+            console.log(result)
+            if(result.score <= SCORE_THRESH) { result = {text: results[0].snippet.substring(0,Math.min(100, results[0].snippet.length)) + '...'} }
+        }
         ans = result.text
     }
 
