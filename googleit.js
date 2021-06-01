@@ -132,14 +132,15 @@ export async function getAnswer(question) {
         // console.log(text)
         let result = await qaClient.predict(question, text)
         console.log(result)
-        if (result.score <= SCORE_THRESH) {
-            if (results.length >= 2) {
-                console.log('getting alternative ans')
-                result = await qaClient.predict(question, results[1].snippet)
-                console.log(result)
-            }
-            if (result.score <= SCORE_THRESH) { result = { text: results[0].snippet.substring(0, Math.min(50    , results[0].snippet.length)) + '...' } }
-        }
+        // ALTERNATIVE ANSWER
+        // if (result.score <= SCORE_THRESH) {
+        //     if (results.length >= 2) {
+        //         console.log('getting alternative ans')
+        //         result = await qaClient.predict(question, results[1].snippet)
+        //         console.log(result)
+        //     }
+        //     if (result.score <= SCORE_THRESH) { result = { text: results[0].snippet.substring(0, Math.min(50    , results[0].snippet.length)) + '...' } }
+        // }
         ans = result.text
     }
 
