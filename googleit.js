@@ -33,7 +33,7 @@ import { isNull } from 'util';
 // Proxy list: https://www.freeproxylists.net/
 
 //////////////////////// CONFIG ///////////////////////
-let SCORE_THRESH = 0.32
+let SCORE_THRESH = 0.24
 
 let VAR_LEN = 256
 let MAX_LEN = 256 * 2
@@ -138,7 +138,7 @@ export async function getAnswer(question) {
                 result = await qaClient.predict(question, results[1].snippet)
                 console.log(result)
             }
-            if (result.score <= SCORE_THRESH) { result = { text: results[0].snippet.substring(0, Math.min(100, results[0].snippet.length)) + '...' } }
+            if (result.score <= SCORE_THRESH) { result = { text: results[0].snippet.substring(0, Math.min(50    , results[0].snippet.length)) + '...' } }
         }
         ans = result.text
     }
