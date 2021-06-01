@@ -1,0 +1,22 @@
+{
+  "name": "AskAQuestion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@googleapis/customsearch": "^0.2.0",
+    "google-it": "^1.6.2",
+    "googleapis": "^74.2.0",
+    "node-fetch": "^2.6.1",
+    "question-answering": "^3.0.0",
+    "scratch-api": "^1.1.11",
+    "unfluff": "^3.2.0"
+  }
+}
