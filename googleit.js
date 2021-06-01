@@ -118,7 +118,7 @@ export async function getAnswer(question) {
     // let text = await getAPISnippet(question)
     // let text = await getBottomSitePreview(question)
 
-    let results = await googleSearch(search)
+    let results = await googleSearch(question)
     if (results.length < 1) { return 'Answer could not be found.' }
     // console.log(results[0].link)
     let text = results[0].snippet
