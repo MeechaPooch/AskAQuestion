@@ -54,8 +54,8 @@ let custom = {
     "bee movie script": beeMovieLolllll,
     "hello": "ask a QUESTION! you silly!",
     "who is joe": "joe MAMA!!!!",
-    "who is griffpatch" : "a billionare doge with over 200k followers on scratch!",
-    "who is ceebee" : "a member of the Scratch Team and a Gryffindor"
+    "who is griffpatch": "a billionare doge with over 200k followers on scratch!",
+    "who is ceebee": "a member of the Scratch Team and a Gryffindor"
 }
 
 const googleOpts = {
@@ -71,7 +71,7 @@ const options = {
 
 async function googleSearch(search) {
     // return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286' });
-    return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286', 'limit': '3' });
+    return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286', 'limit': '2' });
 }
 
 async function googleAPI(search) {
@@ -132,11 +132,13 @@ export async function getAnswer(question) {
         // console.log(text)
         let result = await qaClient.predict(question, text)
         console.log(result)
-        if(result.score <= SCORE_THRESH) {
-            console.log('getting alternative ans')
-            result = await qaClient.predict(question, results[1].snippet)
-            console.log(result)
-            if(result.score <= SCORE_THRESH) { result = {text: results[0].snippet.substring(0,Math.min(100, results[0].snippet.length)) + '...'} }
+        if (result.score <= SCORE_THRESH) {
+            if (results.length >= 2) {
+                console.log('getting alternative ans')
+                result = await qaClient.predict(question, results[1].snippet)
+                console.log(result)
+            }
+            if (result.score <= SCORE_THRESH) { result = { text: results[0].snippet.substring(0, Math.min(100, results[0].snippet.length)) + '...' } }
         }
         ans = result.text
     }
@@ -146,7 +148,7 @@ export async function getAnswer(question) {
 }
 
 export async function getAnswerFiltered(question) {
-    
+
 }
 
 
