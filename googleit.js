@@ -14,6 +14,10 @@ const customsearch = google.customsearch('v1')
 import { colors } from './console-colors.js'
 import { isNull } from 'util';
 
+import Filter from 'bad-words'
+
+let filter = new Filter();
+
 /// LOLLLL: poop!!!! | why am i going insane?!?!?!
 // Examples: 
 // who are the beatles?
@@ -71,7 +75,7 @@ const options = {
 
 async function googleSearch(search) {
     // return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286' });
-    return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286', 'limit':'2','excludeSites':'youtube.com' });
+    return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286', 'limit': '2', 'excludeSites': 'youtube.com' });
 }
 
 async function googleAPI(search) {
@@ -139,7 +143,7 @@ export async function getAnswer(question) {
                 result = await qaClient.predict(question, results[1].snippet)
                 console.log(result)
             }
-            if (result.score <= SCORE_THRESH) { result = { text: results[0].snippet.substring(0, Math.min(50    , results[0].snippet.length)) + '...' } }
+            if (result.score <= SCORE_THRESH) { result = { text: results[0].snippet.substring(0, Math.min(50, results[0].snippet.length)) + '...' } }
         }
         ans = result.text
     }
@@ -149,7 +153,15 @@ export async function getAnswer(question) {
 }
 
 export async function getAnswerFiltered(question) {
-
+    if (filter.isProfane(question)) {
+        return 'Could not find answer.'
+    }
+    let answer = getAnswer(question)
+    if (filter.isProfane(answer)) {
+        return 'Could not find answer.'
+    } else {
+        return answer
+    }
 }
 
 

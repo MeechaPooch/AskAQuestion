@@ -18,6 +18,7 @@
     "node-fetch": "^2.6.1",
     "question-answering": "^3.0.0",
     "scratch-api": "^1.1.11",
+    "swearjar": "^0.2.0",
     "unfluff": "^3.2.0"
   }
 }

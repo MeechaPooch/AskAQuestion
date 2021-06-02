@@ -1,7 +1,7 @@
 import Scratch from 'scratch-api'
 import fs from 'fs'
 import fetch from 'node-fetch'
-import { init, getAnswer } from './googleit.js'
+import { init, getAnswerFiltered } from './googleit.js'
 
 const info = { username: 'cs108426', password: '40sandstone', projectId: '537953417' }
 const VAR_LENGTH = 256;
@@ -51,7 +51,7 @@ async function startListening() {
                             const requestId = val.substr(0, 4)
                             const question = decode(val.substr(4, val.length))
                             console.log('Question recieved: ' + question)
-                            let answer = await getAnswer(question)
+                            let answer = await getAnswerFiltered(question)
                             console.log('Answer is: ' + answer)
                             answer = answer.substr(0, Math.min(answer.length, (VAR_LENGTH - 4) / 2))
                             resSlot = (resSlot + 1) % 2
