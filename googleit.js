@@ -71,7 +71,7 @@ const options = {
 
 async function googleSearch(search) {
     // return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286' });
-    return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286', 'limit': '2' });
+    return googleIt({ options, 'no-display': 'true', 'query': search, 'proxy': '62.113.113.155:16286' });
 }
 
 async function googleAPI(search) {
