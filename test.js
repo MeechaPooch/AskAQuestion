@@ -15,6 +15,6 @@ c.loadDefault()
 // c.addWord('bitcc')
 // c.addWord('fuck')
 
-console.log(c.isVulgar('as'))
+console.log(c.isVulgar('Pornography'))
 // console.log(c.isVulgar('con'))
-// console.log(c.compressor.compress('continent'))
+console.log(c.compressor.compress('porn'))

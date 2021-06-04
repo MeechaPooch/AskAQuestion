@@ -142,7 +142,7 @@ export class Filter {
     loadDefault() {
         let c = this
         c.addMapping(['o', '0', 'O'], 'o')
-        c.addMapping([' ', '-', '_', '*', '+','^'], '')
+        c.addMapping([' ', '-', '_', '*', '+','^','.'], '')
         c.addMapping(['z'], 's')
         c.addMapping(['q'], 'p')
         c.addMapping(['q'], 'p')
