@@ -1,4 +1,7 @@
+import {Filter} from './profanity-filter.js'
 
+let c = new Filter()
+c.loadDefault()
 
 
 // console.log(c.tester.words)
@@ -12,4 +15,6 @@
 // c.addWord('bitcc')
 // c.addWord('fuck')
 
-console.log(c.isVulgar('retard'))
+console.log(c.isVulgar('continent'))
+console.log(c.isVulgar('con'))
+console.log(c.compressor.compress('continent'))
