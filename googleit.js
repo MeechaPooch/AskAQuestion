@@ -1,4 +1,4 @@
-import googleIt from 'google-it'
+import googleIt from 'google-it-safesearch'
 import qaPkg from "question-answering";
 const { QAClient } = qaPkg;
 import unfluff from 'unfluff'

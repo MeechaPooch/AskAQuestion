@@ -14,6 +14,7 @@
     "@googleapis/customsearch": "^0.2.0",
     "bad-words": "^3.0.4",
     "google-it": "^1.6.2",
+    "google-it-safesearch": "^1.6.2",
     "googleapis": "^74.2.0",
     "n-readlines": "^1.0.1",
     "node-fetch": "^2.6.1",
