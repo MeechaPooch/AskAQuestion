@@ -124,6 +124,7 @@ export async function getAnswer(question) {
     // let text = await getBottomSitePreview(question)
 
     let results = await googleSearch(question)
+    console.log(results)
     console.log('results length: ' + results.length)
     if (results.length < 1) { return 'Answer could not be found.' }
     // console.log(results[0].link)
