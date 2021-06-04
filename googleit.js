@@ -157,7 +157,7 @@ export async function getAnswerFiltered(question) {
     if (filter.isVulgar(question)) {
         return 'Question or Answer Filtered by Server.'
     }
-    let answer = getAnswer(question)
+    let answer = await getAnswer(question)
     if (filter.isVulgar(answer)) {
         return 'Question or Answer Filtered by Server.'
     } else {
