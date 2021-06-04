@@ -140,8 +140,6 @@ export class Filter {
     }
 
     loadDefault() {
-        let lines = new Lines('badwords.txt')
-        let line;
         let c = this
         c.addMapping(['o', '0', 'O'], 'o')
         c.addMapping([' ', '-', '_', '*', '+','^'], '')
@@ -156,8 +154,15 @@ export class Filter {
         // c.addMapping(['e'],'i')
         c.addMapping(['cc'], 'ch')
 
+        let lines = new Lines('badwords.txt')
+        let line;
         while (line = lines.next()) {
             c.addWord(line.toString('ascii'));
+        }
+
+        lines = new Lines('badwordsNoComp.txt')
+        while (line = lines.next()) {
+            this.tester.addWord(line.toString('ascii'));
         }
     }
 
