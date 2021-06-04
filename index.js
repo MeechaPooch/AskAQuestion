@@ -2,6 +2,10 @@ import Scratch from 'scratch-api'
 import fs from 'fs'
 import fetch from 'node-fetch'
 import { init, getAnswerFiltered } from './googleit.js'
+// import {Filter} from './profanity-filter.js'
+
+// let filter = new Filter()
+// filter.loadDefault()
 
 const info = { username: 'cs108426', password: '40sandstone', projectId: '537953417' }
 const VAR_LENGTH = 256;

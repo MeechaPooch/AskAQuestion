@@ -14,9 +14,10 @@ const customsearch = google.customsearch('v1')
 import { colors } from './console-colors.js'
 import { isNull } from 'util';
 
-import Filter from 'bad-words'
+import {Filter} from './profanity-filter.js'
 
-let filter = new Filter();
+let filter = new Filter()
+filter.loadDefault()
 
 /// LOLLLL: poop!!!! | why am i going insane?!?!?!
 // Examples: 
@@ -153,12 +154,12 @@ export async function getAnswer(question) {
 }
 
 export async function getAnswerFiltered(question) {
-    if (filter.isProfane(question)) {
-        return 'Could not find answer.'
+    if (filter.isVulgar(question)) {
+        return 'Question or Answer Filtered by Server.'
     }
     let answer = getAnswer(question)
-    if (filter.isProfane(answer)) {
-        return 'Could not find answer.'
+    if (filter.isVulgar(answer)) {
+        return 'Question or Answer Filtered by Server.'
     } else {
         return answer
     }

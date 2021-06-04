@@ -1,11 +1,15 @@
-// import Filter from 'bad-words'
 
-// let filter = new Filter();
 
-// console.log('hmm')
-// console.log(filter.isProfane('redditretard!'))
-// filter.addWords('fuc','fuuck','')
 
-import filter from 'swearjar'
+// console.log(c.tester.words)
 
-console.log(filter.profane('porn'))
+
+// c.addWord('fuck')
+// c.addWord('sex')
+// c.addWord('boobs')
+// c.addWord('vegana')
+// c.addWord('vegina')
+// c.addWord('bitcc')
+// c.addWord('fuck')
+
+console.log(c.isVulgar('retard'))
