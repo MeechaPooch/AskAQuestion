@@ -14,7 +14,7 @@ export class WordCompressor {
     }
 
     compress(word) {
-        this.removeWords.forEach(bit => { word = word.replace(bit,'') })
+        this.removeWords.forEach(bit => { word = word.split(bit).join('') })
 
         // word = this.singleChars(word)
 
