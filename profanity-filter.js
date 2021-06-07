@@ -13,9 +13,15 @@ export class WordCompressor {
         this.removeWords.push(bit)
     }
 
-    compress(word) {
-        this.removeWords.forEach(bit => { word = word.split(bit).join('') })
+    shear(phrase) {
+        this.removeWords.forEach(bit => { phrase = phrase.split(bit).join('') })
+        return phrase
+    }
 
+    compress(word) {
+        // this.removeWords.forEach(bit => { word = word.split(bit).join('') })
+
+        word = this.shear(word)
         // word = this.singleChars(word)
 
 
@@ -188,6 +194,6 @@ export class Filter {
     }
 
     isVulgar(string) {
-        return this.tester.containsWord(this.compressor.compress(string.toLowerCase())) || this.tester.containsWord(string)
+        return this.tester.containsWord(this.compressor.compress(string.toLowerCase())) || this.tester.containsWord(this.compressor.shear(string.toLowerCase() + " "))
     }
 }
