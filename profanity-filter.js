@@ -2,13 +2,20 @@ import Lines from 'n-readlines'
 
 export class WordCompressor {
     collapseMap = {}
+    removeWords = []
     addMapping(list, to) {
         list.forEach(key => {
             this.collapseMap[key] = to
         });
     }
 
+    addRemove(bit) {
+        this.removeWords.push(bit)
+    }
+
     compress(word) {
+        this.removeWords.forEach(bit => { word = word.replace(bit,'') })
+
         // word = this.singleChars(word)
 
 
@@ -142,7 +149,7 @@ export class Filter {
     loadDefault() {
         let c = this
         c.addMapping(['o', '0', 'O'], 'o')
-        c.addMapping([' ', '-', '_', '*', '+','^','.'], '')
+        c.addMapping([' ', '-', '_', '*', '+', '^', '.'], '')
         c.addMapping(['z'], 's')
         c.addMapping(['q'], 'p')
         c.addMapping(['q'], 'p')
@@ -150,7 +157,7 @@ export class Filter {
         c.addMapping(['k'], 'c')
         c.addMapping(['$'], 's')
         c.addMapping(['ch'], 'x')
-        c.addMapping(['1','l'], 'i')
+        c.addMapping(['1', 'l'], 'i')
         // c.addMapping(['e'],'i')
         c.addMapping(['cc'], 'ch')
 
@@ -163,6 +170,11 @@ export class Filter {
         lines = new Lines('badwordsNoComp.txt')
         while (line = lines.next()) {
             this.tester.addWord(line.toString('ascii'));
+        }
+
+        lines = new Lines('okWords.txt')
+        while (line = lines.next()) {
+            this.compressor.addRemove(line.toString('ascii').toLowerCase());
         }
     }
 
