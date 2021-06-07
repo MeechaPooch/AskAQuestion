@@ -10,7 +10,7 @@ import { init, getAnswerFiltered } from './googleit.js'
 const info = { username: 'cs108426', password: '40sandstone', projectId: '537953417' }
 const VAR_LENGTH = 256;
 const chars = fs.readFileSync('chars.txt').toString().split("\r\n");
-
+const channels = fs.readFileSync('channels').toString().split("");
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -50,18 +50,22 @@ async function startListening() {
             sess.on('set', async (name, val) => {
                 try {
                     console.log(`variable set- name: ${name}, val: ${val}`)
-                    if (name == '☁ req') {
-                        if (val.length >= 4) {
-                            const requestId = val.substr(0, 4)
-                            const question = decode(val.substr(4, val.length))
-                            console.log('Question recieved: ' + question)
-                            let answer = await getAnswerFiltered(question)
-                            console.log('Answer is: ' + answer)
-                            answer = answer.substr(0, Math.min(answer.length, (VAR_LENGTH - 4) / 2))
-                            resSlot = (resSlot + 1) % 2
-                            let varName = '☁ res' + resSlot
-                            sess.set(varName, requestId + encode(answer))
-                            console.log('Answer set on ' + varName)
+                    if (name.includes('☁ req')) {
+                        let channel = name[5]
+                        if (channels.includes(channel)) {
+                            if (val.length >= 4) {
+                                const requestId = val.substr(0, 4)
+                                const question = decode(val.substr(4, val.length))
+                                console.log('Question recieved: ' + question)
+                                let answer = await getAnswerFiltered(question)
+                                console.log('Answer is: ' + answer)
+                                answer = answer.substr(0, Math.min(answer.length, (VAR_LENGTH - 4) / 2))
+                                // resSlot = (resSlot + 1) % 2
+                                // let varName = '☁ res' + resSlot
+                                let varName = '☁ res' + channel
+                                sess.set(varName, requestId + encode(answer))
+                                console.log('Answer set on ' + varName)
+                            }
                         }
                     }
                 } catch (err) { console.log('BEEP BEEP ERROR!!! ' + err) }
