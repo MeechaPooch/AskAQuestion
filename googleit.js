@@ -54,13 +54,14 @@ export async function init() {
 const beeMovieLolllll = "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible. Yellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little."
 
 let custom = {
-    "hello there": "obi wan",
-    "bee movie": beeMovieLolllll,
-    "bee movie script": beeMovieLolllll,
-    "hello": "ask a QUESTION! you silly!",
+    "hello there": "Obi Wan",
+    "bee movie": beeMovieLolllll.substring(0,50),
+    "bee movie script": beeMovieLolllll.substring(0,50),
+    // "hello": "ask a QUESTION! you silly!",
     "who is joe": "joe MAMA!!!!",
-    "who is griffpatch": "a billionare doge with over 200k followers on scratch!",
-    "who is ceebee": "a member of the Scratch Team and a Gryffindor"
+    "who is griffpatch": "a billionare doge scratch tycoon!!!!",
+    "who is ceebee": "a member of the Scratch Team and a Gryffindor",
+    "who is gobello": "ilhp10's first follower and a darn cool dude"
 }
 
 const googleOpts = {
@@ -119,6 +120,12 @@ async function getBottomSitePreview(search) {
 }
 
 export async function getAnswer(question) {
+
+    let qTrimmed = question.toLowerCase().split('?').join('') 
+    if(qTrimmed in custom) {
+        return custom[qTrimmed]
+    }
+
     let ans = null
     // let text = await getAPISnippet(question)
     // let text = await getBottomSitePreview(question)
@@ -150,17 +157,17 @@ export async function getAnswer(question) {
         ans = result.text
     }
 
-    console.log(`Question: ${colors.fgBlack + colors.bgWhite}${question}${colors.reset} | Answer: ${colors.fgBlack + colors.bgWhite}${ans}${colors.reset}`)
+    console.log(`Question: ${colors.fgBlack + colors.bgWhite}${question}${colors.reset} | Answer: ${colors.fgBlack + colors.bgWhite}${ans}${colors.reset}`)    
     return ans;
 }
 
 export async function getAnswerFiltered(question) {
     if (filter.isVulgar(question)) {
-        return 'Question or Answer Filtered by Server.'
+        return 'Answer could not be found.'
     }
     let answer = await getAnswer(question)
     if (filter.isVulgar(answer)) {
-        return 'Question or Answer Filtered by Server.'
+        return 'Answer could not be found.'
     } else {
         return answer
     }
