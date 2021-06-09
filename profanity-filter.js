@@ -162,6 +162,7 @@ export class Filter {
         c.addMapping(['ck'], 'c')
         c.addMapping(['k'], 'c')
         c.addMapping(['$'], 's')
+        c.addMapping(['3'], 'e')
         c.addMapping(['ch'], 'x')
         c.addMapping(['1', 'l'], 'i')
         // c.addMapping(['e'],'i')

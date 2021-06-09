@@ -61,7 +61,8 @@ let custom = {
     "who is joe": "joe MAMA!!!!",
     "who is griffpatch": "a billionare doge scratch tycoon!!!!",
     "who is ceebee": "a member of the Scratch Team and a Gryffindor",
-    "who is gobello": "ilhp10's first follower and a darn cool dude"
+    "who is gobello": "ilhp10's first follower and a darn cool dude",
+    "should i follow ilhp1": 'Yes. Definitely. Do it!!'
 }
 
 const googleOpts = {
